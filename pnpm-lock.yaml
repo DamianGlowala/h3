@@ -103,6 +103,16 @@ importers:
         specifier: ^3.22.2
         version: 3.22.2
 
+  examples:
+    dependencies:
+      h3:
+        specifier: workspace:../src
+        version: link:../src
+    devDependencies:
+      jiti:
+        specifier: ^1.19.3
+        version: 1.19.3
+
   playground:
     dependencies:
       h3:
