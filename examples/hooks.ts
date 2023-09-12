@@ -1,5 +1,12 @@
 import { createServer } from "node:http";
-import { createApp, createRouter, defineEventHandler, defineRequestMiddleware, defineResponseMiddleware, toNodeListener } from "h3";
+import {
+  createApp,
+  createRouter,
+  defineEventHandler,
+  defineRequestMiddleware,
+  defineResponseMiddleware,
+  toNodeListener,
+} from "h3";
 
 // const app = createApp()
 
@@ -24,23 +31,23 @@ import { createApp, createRouter, defineEventHandler, defineRequestMiddleware, d
 
 // createServer(toNodeListener(app)).listen(3000)
 
+const app = createApp();
 
-
-const app = createApp()
-
-const router = createRouter()
-  .get('/', defineEventHandler({
+const router = createRouter().get(
+  "/",
+  defineEventHandler({
     onRequest: defineRequestMiddleware(() => {
-      console.log('onRequest')
+      console.log("onRequest");
     }),
     handler: defineEventHandler(() => {
-      return "GET: hello world"
+      return "GET: hello world";
     }),
     onBeforeResponse: defineResponseMiddleware(() => {
-      console.log('onResponse')
-    })
-  }))
+      console.log("onResponse");
+    }),
+  }),
+);
 
-app.use(router)
+app.use(router);
 
-createServer(toNodeListener(app)).listen(3000)
+createServer(toNodeListener(app)).listen(3000);

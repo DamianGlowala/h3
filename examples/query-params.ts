@@ -1,19 +1,27 @@
 import { createServer } from "node:http";
-import { createApp, createRouter, defineEventHandler, getQuery, toNodeListener } from "h3"
+import {
+  createApp,
+  createRouter,
+  defineEventHandler,
+  getQuery,
+  toNodeListener,
+} from "h3";
 
 const app = createApp();
 
-const router = createRouter()
-  .get('/', defineEventHandler((event) => {
-    const query = getQuery(event)
+const router = createRouter().get(
+  "/",
+  defineEventHandler((event) => {
+    const query = getQuery(event);
 
     if (!query.name) {
-      return 'Hello world'
+      return "Hello world";
     }
 
-    return `Hello ${query.name}`
-  }))
+    return `Hello ${query.name}`;
+  }),
+);
 
-app.use(router)
+app.use(router);
 
-createServer(toNodeListener(app)).listen(3000)
+createServer(toNodeListener(app)).listen(3000);
